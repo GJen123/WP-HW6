@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Hotel</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.css"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <script>
+    $(function(){
+      $.ajax({
+        url: "http://140.134.26.71:58080/web-prog/Hotels",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          var items = data.Infos.Info;
+          var allItemSum = 10;
+          for(var i=0; i<allItemSum; i++){
+            var name = items[i].Name;
+            var imgURL = items[i].Picture1;
+            var website = items[i].Website;
+            if(i<5){
+              $("#d4").append('<td><table class="talbe"><tbody><tr><td><a href="'+website+'" class="btn btn-info btn-lg">'+name+'</td></tr><tr><td><img src="'+imgURL+'" class="img-rounded" alt="Cinque Terre" height="150" width="150"></td></tr></tbody></table></td>');
+              $("#d4").append('<td>&nbsp&nbsp&nbsp</td>');
+            }else{
+              $("#d5").append('<td><table class="talbe"><tbody><tr><td><a href="'+website+'" class="btn btn-primary btn-lg">'+name+'</td></tr><tr><td><img src="'+imgURL+'" class="img-rounded" alt="Cinque Terre" height="150" width="150"></td></tr></tbody></table></td>');
+              $("#d5").append('<td>&nbsp&nbsp&nbsp</td>');
+            }
+          }
+        },
+        error: function() {
+        }
+      });
+      });
+    </script>
+
+    <style>
+      #d4{
+        margin-bottom: 20px;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div class="container">
+      <table class="table">
+      <h1>Hotel</h1>
+      <tbody>
+        <tr>
+          <div id="d4"></div>
+        </tr>
+        <tr>
+          <div id="d5"></div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>
